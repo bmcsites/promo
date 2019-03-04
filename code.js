@@ -21,19 +21,23 @@ $('document').ready(function(){
         showPic.hide();
     });
 
-    let createCanvas  = () =>{
-        let cnvs = document.getElementById('join-image');
-        let ctx = cnvs.getContext('2d');
-        let pic = new Image();
-        pic.src="https://thumbs.dreamstime.com/z/kids-sport-team-having-pep-talk-coach-children-soccer-motivated-trainer-coaching-football-youth-young-boys-standing-109031418.jpg";
-        pic.addEventListener("load", () => {
-            ctx.filter = 'blur(2px)';
-            ctx.drawImage(pic, 0, 0, cnvs.width, cnvs.height);
+    let cnvs = document.getElementById('join-image');
+    let ctx = cnvs.getContext('2d');
+    ctx.width = 700;
+    ctx.height = 453;
+    let pic = new Image();
+    pic.src="https://cdn.interiorzine.com/wp-content/uploads/2017/11/50-ways-to-make-a-small-space-more-livable.jpg";
+    document.onmousemove = function(e) {
+        ctx.clearRect(0, 0, cnvs.width, cnvs.height);
+        var event = e || window.event;
+        window.mouseX = event.clientX;
+        window.mouseY = event.clientY;
+        if(window.mouseX < ctx.width && window.mouseY < ctx.height){
+            // ctx.filter = 'blur(5px)';
+            let image2 = ctx.drawImage(pic, window.mouseX - 50, window.mouseY - 100,100,100,window.mouseX - 50, window.mouseY - 100,100,100);
+        }
+     };
 
-        });
-    };
-
-    createCanvas();
 
 
 });
